@@ -1,0 +1,368 @@
+* {
+  /* `The font is required to be installed for show the icons */
+  font-family: "InconsolataGo Nerd Font";
+  font-size: 9.7pt;
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 3px;
+    min-height: 0;
+    /* margin: 0.2em 0em 0.2em 0em; */
+    margin: 2.8px 0.2px 2.8px 0.2px;
+}
+
+/* The whole bar */
+#waybar {
+    background-color: transparent;
+    transition-property: background-color;
+    transition-duration: 0.4s;
+    border-top: 0px transparent;
+    border-radius: 0px;
+    margin: 0px 0px;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#workspaces button {
+  padding: 0 2px;
+  color: #a08f81;
+  background-color: transparent;
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each workspace name */
+  border: none;
+  border-radius: 0;
+}
+
+#workspaces button.focused {
+  background-color: transparent;
+}
+#workspace button.hover {
+  background-color: transparent;
+}
+#workspaces button.active {
+  color: #ebdbb2;
+}
+
+#workspaces button.urgent {
+  background-color: #eb4d4b;
+}
+
+#window {
+  /* border-radius: 20px; */
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
+  color: #64727d;
+}
+
+/* Each module */
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#custom-screenshot_t,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd,
+#bluetooth,
+#custom-hyprPicker,
+#custom-power,
+#custom-spotify,
+#custom-wofi,
+#custom-weather,
+#custom-weather.severe,
+#custom-weather.sunnyDay,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.default {
+  padding: 0px 15px;
+  color: #e5e5e5;
+  /* color: #bf616a; */
+  border-radius: 20px;
+  background-color: #282828;
+}
+
+#window,
+#workspaces {
+  border-radius: 12px;
+  padding: 0px 10px;
+  /* background-color: #665c54; */
+  /* background-color: #e78a4e; */
+  /* background-color: #ea6962; */
+  background-color: #282828;
+}
+
+#cpu {
+  /* Gruvbox Material */
+  /* color: #8f3f71;
+  background-color: #d3869b; */
+
+  /* Gruvbox */
+  color: #32302f;
+  background-color: #b16286;
+  border-radius: 12px;
+}
+
+#memory {
+  /* Gruvbox Material */
+  /* color: #076678;
+  background-color: #83a598; */
+
+  /* Gruvbox */
+  color: #32302f;
+  background-color: #458588;
+  border-radius: 12px;
+}
+
+#custom-power {
+  border-radius: 12px;
+  padding: 0 13px;
+  color: #ebdbb2;
+  background-color: #282828;
+  /* background-color: #ea6962; */
+}
+
+/* #custom-wofi {
+  background-color: #7c6f64;
+  color: #ebdbb2;
+  border-radius: 15px;
+  padding: 0 13px;
+} */
+
+#custom-weather.severe {
+  color: #eb937d;
+}
+
+#custom-weather.sunnyDay {
+  color: #c2ca76;
+}
+
+#custom-weather.clearNight {
+  color: #cad3f5;
+}
+
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight {
+  color: #c2ddda;
+}
+
+#custom-weather.rainyDay,
+#custom-weather.rainyNight {
+  color: #5aaca5;
+}
+
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight {
+  color: #d6e7e5;
+}
+
+#custom-weather.default {
+  color: #dbd9d8;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#pulseaudio {
+  color: #7d9bba;
+}
+
+#backlight {
+  /* Gruvbox Material */
+  /* color: #427b58;
+  background-color: #8ec07c; */
+
+  /* Gruvbox */
+  color: #32302f;
+  background-color: #cc241d;
+  border-radius: 12px;
+}
+
+#clock {
+  color: #ebdbb2;
+  background-color: #282828;
+  border-radius: 12px;
+}
+
+#battery {
+  /* Gruvbox Material */
+  /* color: #79740e;
+  background-color: #b8bb26; */
+
+  /* Gruvbox */
+  color: #32302f;
+  background-color: #98971a;
+  border-radius: 12px;
+}
+
+#battery.charging,
+#battery.full,
+#battery.plugged {
+  /* Gruvbox Material */
+  /* color: #79740e;
+  background-color: #b8bb26; */
+
+  /* Gruvbox */
+  color: #282828;
+  background-color: #98971a;
+  border-radius: 12px;
+}
+
+@keyframes blink {
+  to {
+    background-color: rgba(30, 34, 42, 0.5);
+    color: #abb2bf;
+  }
+}
+
+#battery.critical:not(.charging) {
+  color: #cc241d;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#disk {
+  background-color: #964b00;
+}
+
+#bluetooth {
+  color: #707d9d;
+}
+
+#bluetooth.disconnected {
+  color: #f53c3c;
+}
+
+#network {
+  color: #b48ead;
+}
+
+#network.disconnected {
+  color: #f53c3c;
+}
+
+/* For when music is playing */
+#custom-media {
+  color: #8f3f71;
+  background-color: #d3869b;
+  min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+  color: #687707;
+  background-color: #a9b655;
+  min-width: 100px;
+}
+
+#custom-media.custom-vlc {
+  background-color: #ffa000;
+}
+
+#wireplumber{
+  /* Gruvbox Material */
+  /* color: #b47109;
+  background-color: #d8a657; */
+
+  /* Gruvbox */
+  color: #32302f;
+  background-color: #d79921;
+  border-radius: 12px;
+}
+
+#temperature {
+  /* Gruvbox Material */
+  /* color: #ebdbb2;
+  background-color: #689d6a; */
+
+  /* Gruvbox */
+  color: #ebdbb2;
+  background-color: #689d6a;
+  border-radius: 12px;
+}
+
+#temperature.critical {
+  /* Gruvbox Material */
+  /* background-color: #ea6962; */
+
+  /* Gruvbox */
+  background-color: #cc241d;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #eb4d4b;
+}
+
+#idle_inhibitor {
+  background-color: #2d3436;
+}
+
+#idle_inhibitor.activated {
+  background-color: #ecf0f1;
+  color: #2d3436;
+}
+
+#language {
+  background: #00b093;
+  color: #740864;
+  padding: 0 0px;
+  margin: 0 5px;
+  min-width: 16px;
+}
+
+#keyboard-state {
+  background: #97e1ad;
+  color: #000000;
+  padding: 0 0px;
+  margin: 0 5px;
+  min-width: 16px;
+}
+
+#keyboard-state > label {
+  padding: 0 0px;
+}
+
+#keyboard-state > label.locked {
+  background: rgba(0, 0, 0, 0.2);
+}
