@@ -1,0 +1,421 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# Your preferred terminal emulator
+set $term kitty
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+set $menu tofi-drun --drun-launch=true
+
+### Screenshots
+set $capturing grim -g "$(slurp)" - | swappy -f -
+
+
+### Appearance
+# window corner radius in px
+smart_corner_radius disable
+corner_radius 15
+
+# Window background blur
+blur disable
+blur_xray disable
+blur_passes 4
+blur_radius 3
+
+shadows disable
+shadows_on_csd enable
+shadow_blur_radius 20
+shadow_color #0000007F
+
+# inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
+default_dim_inactive 0.2
+dim_inactive_colors.unfocused #000000FF
+dim_inactive_colors.urgent #900000FF
+
+layer_effects "panel" blur enable
+layer_effects "panel" corner_radius 10
+layer_effects "waybar" blur disable; shadows disable; corner_radius 10
+# layer_effects "wofi" blur enable; shadows disable; corner_radius 13
+layer_effects "gtk-layer-shell" blur enable; shadows enable; corner_radius 13
+
+# Move minimized windows into Scratchpad (enable|disable)
+scratchpad_minimize disable
+
+titlebar_separator enable
+
+gaps outer 3
+gaps inner 5
+# hide_edge_borders both
+default_border pixel 3
+default_floating_border pixel 3
+
+### BORDERRRR
+#app_id                         border        bground           text       indicator     child_border
+#client.focused            #8ec07c       #68946a       #fbf1c7      #68966a       #8ec07c
+#client.focused_inactive   #689d6a       #8ec07c       #fbf1c7      #8ec07c       #689d6a
+# client.unfocused          #689d6a       #8ec07c       #fbf1c7      #8ec07c       #689d6a
+# client.urgent             #fb4943       #282828       #fbf1c7      #282828       #fb4943
+# client.placeholder        #1d2021       #282828       #fbf1c7      #282828       #1d2021
+
+client.focused            #F4E6D2       #B6A8A5       #453636      #B6A8A5       #F4E6D2
+client.focused_inactive   #B6A8A5       #F4E6D2       #453636      #F4E6D2       #B6A8A5
+client.unfocused          #B6A8A5       #F4E6D2       #453636      #f4e6d2       #B6A8A5
+client.urgent             #CA3F3F       #221E1E       #453636      #221E1E       #CA3F3F
+client.placeholder        #181515       #221E1E       #453636      #221E1E       #181515
+
+client.background #FFF7EB
+
+# specific apps
+for_window [class="Spotify"] opacity 0.87
+for_window [class="discord"] opacity 0.8
+# for_window [class="Spotify"] blur enable
+for_window [class="Spotify"] light 1
+for_window [class="Brave-browser"] opacity 0.99
+
+# Floating windows
+for_window {
+    [window_role="pop-up"] floating enable
+    [window_role="bubble"] floating enable
+    [window_role="dialog"] floating enable
+    [window_type="dialog"] floating enable
+    [app_id="floating"] floating enable
+    [app_id="pavucontrol"] floating enable
+    [app_id="blueman"] floating enable
+    [class="Blueman-manager"] floating enable
+    # PiP - See: https://github.com/swaywm/sway/issues/3095
+    [app_id="firefox" title="Picture-in-Picture"] floating enable
+    [app_id="brave" title="Picture-in-Picture"] floating enable
+    [title=".* is sharing your screen."] floating enable
+    [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
+}
+
+# Dialogs
+set $handle_dialog floating enable, move container to workspace current
+for_window {
+    [app_id="onlyoffice" title="Document Recovery$"] $handle_dialog
+    [app_id="Brave-browser" title="Open File"] $handle_dialog
+    [app_id="firefox" title="^Enter name of file to save to…$"] $handle_dialog
+    [app_id="firefox" title="^Open File$"] $handle_dialog
+    [app_id="firefox" title="^Save As$"] $handle_dialog
+    [app_id="firefox" title="^Save Image$"] $handle_dialog
+    [app_id="firefox" title="File Upload"] $handle_dialog
+    [app_id="firefox" title="^Firefox - Choose User Profile$"] $handle_dialog
+    [app_id="firefox" title="^Developer Tools — "] $handle_dialog
+    [app_id="firefox" title="^Opening "] $handle_dialog
+    [app_id="Brave" title="^DevTools - "] $handle_dialog
+    [app_id="Brave-browser" title="^Save As$"] $handle_dialog
+    [app_id="Brave-browser" title="^Save File$"] $handle_dialog
+    [app_id="firefox" title="^Choose Application$"] $handle_dialog
+    [title="(?:Open|Save) (?:File|Folder|As)"] $handle_dialog
+    [app_id="pop-up,task_dialog,About"] $handle_dialog;
+    [window_role="pop-up,task_dialog,About"] $handle_dialog;
+    [window_type="dialog"] $handle_dialog;
+    [window_type="utility"] $handle_dialog;
+    [window_type="toolbar"] $handle_dialog;
+    [window_type="splash"] $handle_dialog;
+    [window_type="menu"] $handle_dialog;
+    [window_type="dropdown_menu"] $handle_dialog;
+    [window_type="popup_menu"] $handle_dialog;
+    [window_type="tooltip"] $handle_dialog;
+    [window_type="notification"] $handle_dialog;
+}
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
+output * {
+  background ~/wallpapers/pixel-digital-art/snow-house.jpg fill
+  resolution 1366x768
+}
+
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+ exec swayidle -w \
+          timeout 1200 'swaylock -f -i "$HOME/Downloads/houseonthesideofalake.jpg"' \
+          timeout 2400 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+          before-sleep 'swaylock -f -i "$HOME/Downloads/houseonthesideofalake.jpg"'
+
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+#
+# Example configuration:
+#
+input "2:7:SynPS/2_Synaptics_TouchPad" {
+    dwt enabled
+    dwtp enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation disabled
+    accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+    pointer_accel 0.3 # set mouse sensitivity (between -1 and 1)
+}
+
+input "7247:52:SIGMACHIP_Usb_Mouse" {
+    dwt enabled
+    dwtp enabled
+    tap enabled
+    natural_scroll disabled
+    middle_emulation disabled
+    accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+    pointer_accel 0.3 # set mouse sensitivity (between -1 and 1)
+}
+
+
+
+input type:keyboard {
+    xkb_layout "es"
+    # xkb_model ""
+    # xkb_variant ""
+    # xkb_options ""
+}
+
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+# Run with every reload
+exec_always {
+    
+    # Import Gsettings
+    ~/.local/bin/import-gsettings
+
+}
+
+# Run once at startup
+exec {
+
+    # XDG autostart
+    dex --autostart
+
+    # Prevents GTK apps from hanging for 15-20 sec before launching
+    dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
+    # nightlight / eye warmer
+    wlsunset -t 5400
+
+    # Swaync
+    swaync
+
+    # Polkit
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+    # Enable screensharing
+    /usr/libexec/xdg-desktop-portal -r
+    /usr/libexec/xdg-desktop-portal-wlr -r
+}
+
+
+
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec $menu
+
+    # capture screen
+    bindsym $mod+Print exec --no-startup-id $capturing
+    # capture screen and save to file
+    bindsym $mod+Shift+Print exec --no-startup-id grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # Open Yazi
+    bindsym $mod+Shift+e exec kitty yazi
+
+    bindsym $mod+o exec killall -SIGUSR2 waybar
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+
+# Light:
+    # Using light
+    
+    # Increasing Backlight
+    # bindsym --locked XF86MonBrightnessUp exec light -A 5
+
+    # Decreasing Backlight
+    # bindsym --locked XF86MonBrightnessDown exec light -U 5
+
+# Wireplumber:
+    # Using pamixer
+
+# Bajar volumen
+    bindsym XF86AudioLowerVolume exec pamixer -ud 3 && pamixer --get-volume > /tmp/volume_wob
+
+# Subir volumen
+    bindsym XF86AudioRaiseVolume exec pamixer -ui 3 && pamixer --get-volume > /tmp/volume_wob
+
+# Mutear/Desmutear
+    bindsym XF86AudioMute exec amixer sset Master toggle | sed -En '/\[on\]/ s/.*\[([0-9]+)%\].*/\1/ p; /\[off\]/ s/.*/0/p' | head -1 > /tmp/volume_wob
+
+# Play/Pause
+    bindsym XF86AudioPlay exec playerctl play-pause
+
+# Siguiente pista
+    bindsym XF86AudioNext exec playerctl next
+
+# Pista anterior
+    bindsym XF86AudioPrev exec playerctl previous
+
+
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+bindsym $mod+x exec wlogout
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+	swaybar_command waybar
+}
+
+include /etc/sway/config.d/*
