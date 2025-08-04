@@ -1,0 +1,308 @@
+* {
+  /* `The font is required to be installed for show the icons */
+  font-family: "InconsolataGo Nerd Font";
+  /* font-size: 8pt; */
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+#window {
+    background-color: transparent;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: "SpaceMono Nerd Font";
+    color: #221e1e;
+    border-radius: 0px;
+    padding: 0px 6px;
+}
+
+window#waybar {
+    /* background-color: #221e1e; */
+    background-color: #7c6f64;
+    transition-property: background-color;
+    transition-duration: 0.4s;
+    border-top: 0px transparent;
+    border-radius: 0px;
+}
+
+window#waybar.empty #window {
+    background-color: transparent;
+}
+
+#workspaces {
+  border-radius: 0px;
+  padding: 0px 0px;
+  background-color: #221e1e;
+}
+
+#workspaces button {
+  padding: 0 2px;
+  background-color: transparent;
+  /* Use box-shadow instead of border so the text isn't offset */
+  /*box-shadow: inset 0 -3px transparent;*/
+  /* Avoid rounded borders under each workspace name */
+  margin-left: 0px;
+  margin-right: 1px;
+  border-radius: 0px;
+  font-size: 13px;
+}
+
+#workspaces button.empty {
+  color: #B79F9F;
+  padding-right: 5px;
+}
+
+#workspaces button.visible {
+  color: #DBC6C2;
+}
+
+#workspaces button.active {
+  color: #F4E6D2;
+  background-color: #7c6f64;
+  border-radius: 0px;
+  padding-right: 5px;
+  transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+#workspaces button.urgent {
+  background-color: #eb4d4b;
+}
+
+#cpu {
+  /* Gruvbox Material */
+  /* color: #8f3f71;
+  background-color: #d3869b; */
+
+  /* Gruvbox */
+  color: #ebdbb2;
+  /* background-color: #b16286; */
+  background-color: #1d2021;
+  border-radius: 10px;
+  padding: 0px 8px;
+  font-size: 7.3pt;
+}
+
+#custom-icon {
+  color: #DBC6C2;
+  background-color: #221e1e;
+  border-radius: 0px;
+  padding: 0px 4px;
+  font-size: 9.3pt;
+  font-family: "SpaceMono Nerd Font";
+}
+
+#memory {
+  /* Gruvbox Material */
+  /* color: #076678;
+  background-color: #83a598; */
+
+  /* Gruvbox */
+  color: #ebdbb2;
+  /* background-color: #458588; */
+  background-color: #1d2021;
+  border-radius: 10px;
+  padding: 0px 8px;
+  font-size: 7.3pt;
+}
+
+#custom-notification {
+  color: #f4e6d2;
+  background-color: #221e1e;
+  border-radius: 0px;
+  padding: 0px 7px;
+  font-size: 8pt;
+}
+
+#custom-power {
+  border-radius: 0px;
+  padding: 0px 10px;
+  color: #f4e6d2;
+  background-color: #221e1e;
+  font-size: 8.8pt;
+  font-weight: 600;
+}
+
+#power-profiles-daemon {
+  color: #f4e6d2;
+  background-color:#221e1e;
+  border-radius: 0px;
+  font-size: 10pt;
+  padding: 0px 10px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#pulseaudio {
+  color: #7d9bba;
+}
+
+#backlight {
+  /* Gruvbox Material */
+  /* color: #427b58;
+  background-color: #8ec07c; */
+
+  /* Gruvbox */
+  color: #32302f;
+  background-color: #cc241d;
+  border-radius: 10px;
+  padding: 0px 8px;
+}
+
+#clock {
+  color: #f4e6d2;
+  background-color: #221e1e;
+  border-radius: 0px;
+  padding: 0px 5px;
+  font-size: 8.7pt;
+  font-weight: 600;
+  font-family: "SpaceMono Nerd Font";
+}
+
+#battery {
+  /* Gruvbox Material */
+  /* color: #79740e;
+  background-color: #b8bb26; */
+
+  /* Gruvbox */
+  color: #f4e6d2;
+  /* background-color: #98971a; */
+  background-color: #221e1e;
+  border-radius: 0px;
+  padding: 0px 7px;
+  font-size: 8.8pt;
+  font-weight: 600;
+  font-family: "SpaceMono Nerd Font";
+}
+
+#battery.charging,
+#battery.full,
+#battery.plugged {
+  /* Gruvbox Material */
+  /* color: #79740e;
+  background-color: #b8bb26; */
+
+  /* Gruvbox */
+  color: #f4e6d2;
+  background-color: #221e1e;
+  border-radius: 0px;
+  padding: 0px 5px;
+  font-weight: 600;
+  font-size: 8.8pt;
+}
+
+@keyframes blink {
+  to {
+    background-color: rgba(30, 34, 42, 0.5);
+    color: #abb2bf;
+  }
+}
+
+#battery.critical:not(.charging) {
+  color: #CA3F3F;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#network {
+  color: #dbc6c2;
+  background-color: #181515;
+  border-radius: 10px;
+  padding: 2px 10px;
+}
+
+#network.disconnected {
+  color: #ae4750;
+}
+
+/* For when music is playing */
+#custom-media {
+  color: #221e1e;
+  background-color: #C6695D;
+  min-width: 100px;
+  border-radius: 10px;
+  padding: 0px 8px;
+}
+
+#custom-media.custom-spotify {
+  /* color: #687707;
+  background-color: #a9b655; */
+  color: #221e1e;
+  background-color: #C6695D;
+  min-width: 110px;
+  border-radius: 10px;
+  padding: 2px 10px;
+}
+
+#tray {
+  background-color: #221e1e;
+  border-radius: 0px;
+  /* padding: 6px;  Adjusted padding */
+  opacity: 1;
+  transition: color .15s ease;
+  font-size: 21px;
+  padding: 0px 7px;
+}
+
+#custom-media.custom-vlc {
+  background-color: #ffa000;
+}
+
+#wireplumber{
+  /* Gruvbox Material */
+  /* color: #b47109;
+  background-color: #d8a657; */
+
+  /* Gruvbox */
+  color: #32302f;
+  background-color: #d79921;
+  border-radius: 10px;
+  padding: 0px 7px;
+}
+
+#temperature {
+  /* Gruvbox Material */
+  /* color: #ebdbb2;
+  background-color: #689d6a; */
+
+  /* Gruvbox */
+  color: #ebdbb2;
+  background-color: #689d6a;
+  border-radius: 10px;
+  padding: 0px 4px;
+}
+
+#temperature.critical {
+  /* Gruvbox Material */
+  background-color: #ea6962;
+  padding: 0px 4px;
+
+  /* Gruvbox */
+  /* background-color: #cc241d; */
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #eb4d4b;
+}

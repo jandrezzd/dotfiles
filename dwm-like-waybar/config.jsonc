@@ -1,0 +1,377 @@
+{
+    // Global configuration
+
+    "layer": "top",
+
+    "position": "top",
+
+    //"height": 20,
+
+    "margin-left": 0,
+    "margin-bottom": 0,
+    "margin-top": 0,
+    "margin-right": 0,
+
+    "spacing": 0, // Gaps between modules
+
+    "modules-left": [
+        "niri/workspaces",
+        "custom/icon",
+        "niri/window",
+        // "temperature",
+        "custom/media"
+    ],
+    "modules-center": [
+        
+    ],
+    "modules-right": [
+        // "memory",
+        // "cpu",
+        // "backlight",
+        // "wireplumber",
+        // "custom/screenshot_t",
+        "power-profiles-daemon",
+        "battery",
+        "custom/notification",
+        "tray",
+        "clock",
+        "custom/power"
+    ],
+
+
+    // Modules
+
+    "custom/sp1": {
+        "format": "|",
+        "tooltip": false
+    },
+    "custom/sp2": {
+        "format": " |",
+        "tooltip": false
+    },
+    
+    // "custom/screenshot_t":{
+    //     "format":"",
+    //     "on-click": "~/.config/hypr/scripts/screenshot_full",
+    //     "on-click-right":"~/.config/hypr/scripts/screenshot_area"
+    // },
+
+    // "temperature": {
+    //     // "thermal-zone": 1,
+    //     "interval": 4,
+    //     //"hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    //     "critical-threshold": 80,
+    //     // "format-critical": " {temperatureC}°C",
+    //     "format-critical": " {temperatureC}°C",
+    //     "format": "{icon} {temperatureC}°C",
+    //     "format-icons": ["", "", ""],
+    //     "max-length": 7,
+    //     "min-length": 7,
+    //     "on-click": "xsensors"
+    // },
+
+    // "memory": {
+    //     "interval": 30,
+    //     // "format": "  {used:0.2f}/{total:0.0f} GB",
+    //     "format": "  {used:0.2f} GB",
+    //     "on-click": "kitty -e htop"
+    // },
+
+    //"hyprland/window": {
+    //    "format": "{class}",
+    //    "separate-outputs": false,
+    //    "max-length": 50
+    //},
+
+    "niri/window": {
+        "format":"{app_id}",
+        "separate-outputs": false
+    },
+
+    "custom/icon": {
+        "format": "[]=",
+        "tooltip": false
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": " ",
+        "on-click": "swaync-client -t -sw",
+        "escape": true
+    },
+
+    "battery": {
+        "interval": 2,
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        // "format-charging": " {capacity}%",
+        "format-charging": "󰢝  {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": [
+            "󰁺",
+            "󰁼",
+            "󰁾",
+            "󰂀",
+            "󰁹"
+        ]
+    },
+
+    // "network": {
+    //     // "format-wifi": " {essid} ({signalStrength}%)",
+    //     "format-wifi": " ",
+    //     "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    //     "format-linked": "{ifname} (No IP) ",
+    //     "format": "",
+    //     "format-disconnected": "󱛅",
+    //     "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    //     "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
+    //     "on-click-right": "wl-copy $(ip address show up scope global | grep inet6 | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c6-)",
+    //     "tooltip-format": " {bandwidthUpBits}  {bandwidthDownBits}\n{ifname}\n{ipaddr}/{cidr}\n",
+    //     "tooltip-format-wifi": " {essid} {frequency}MHz\nStrength: {signaldBm}dBm ({signalStrength}%)\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}",
+    //     "interval": 10
+    // },
+
+    // "custom/storage": {
+    //     "format": " {}",
+    //     "format-alt": "{percentage}% ",
+    //     "format-alt-click": "click-right",
+    //     "return-type": "json",
+    //     "interval": 60,
+    //     "exec": "~/.config/waybar/modules/storage.sh"
+    // },
+
+    // "backlight": {
+    //     "device": "intel_backlight",
+    //     "format": "{icon} {percent}%",
+    //     "format-alt": "{percent}% {icon}",
+    //     "format-alt-click": "click-right",
+    //     //"format-icons": ["", ""],
+    //     "format-icons": ["", ""],
+    //     "on-scroll-down": "brightnessctl s 5%-",
+    //     "on-scroll-up": "brightnessctl s +5%"
+    // },
+
+    // "idle_inhibitor": {
+    //     "format": "{icon}",
+    //     "format-icons": {
+    //         "activated": "",
+    //         "deactivated": ""
+    //     },
+    //     "tooltip": "true"
+    // },
+   
+    // "custom/pacman": {
+    //     "format": "<big>􏆲</big>  {}",
+    //     "interval": 3600,                     // every hour
+    //     "exec": "checkupdates | wc -l",       // # of updates
+    //     "exec-if": "exit 0",                  // always run; consider advanced run conditions
+    //     "on-click": "alacritty -e 'paru'; pkill -SIGRTMIN+8 waybar", // update system
+    //     "signal": 8,
+    //     "max-length": 5,
+    //     "min-length": 3
+    // },
+
+    "custom/media": {
+        "format": "{0} {1}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        //"exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+
+    "custom/power": {
+        "format": " ",
+        "tooltip": false,
+        "on-click": "wlogout"
+    },
+
+    "clock": {
+        // "tooltip-format": "<tt>{calendar}</tt>",
+        "format": "{:%b %d %I:%M %p}",
+        "tooltip": true,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    // "custom/gammastep": {
+    //   "interval": 5,
+    //   "return-type": "json",
+    //   "exec": {
+    //     "pre": "if unit_status=\"$(systemctl --user is-active gammastep)\"; then\nstatus=\"$unit_status ($(journalctl --user -u gammastep.service -g 'Period: ' | tail -1 | cut -d ':' -f6 | xargs))\"\nelse\nstatus=\"$unit_status\"\nfi",
+    //     "alt": "${status:-inactive}",
+    //     "tooltip": "Gammastep is $status",
+    //   },
+    //   "format": "{icon}",
+    //   "format-icons": {
+    //     "activating": "󰁪 ",
+    //     "deactivating": "󰁪 ",
+    //     "inactive": "? ",
+    //     "active (Night)": " ",
+    //     "active (Nighttime)": " ",
+    //     "active (Transition (Night)": " ",
+    //     "active (Transition (Nighttime)": " ",
+    //     "active (Day)": " ",
+    //     "active (Daytime)": " ",
+    //     "active (Transition (Day)": " ",
+    //     "active (Transition (Daytime)": " ",
+    //   },
+    //   "on-click": "systemctl --user is-active gammastep && systemctl --user stop gammastep || systemctl --user start gammastep",
+    // },
+
+    // "cpu": {
+    //     "interval": 1,
+    //     //"format": " {}%", // Icon: microchip
+    //     // "format": "{max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
+    //     "format": "  {usage}%"
+    //     // "max-length": 13,
+    //     // "min-length": 13
+    // },
+
+    // "mpd": {
+    //     "max-length": 25,
+    //     "format": "<span foreground='#bb9af7'></span> {title}",
+    //     "format-paused": " {title}",
+    //     "format-stopped": "<span foreground='#bb9af7'></span>",
+    //     "format-disconnected": "",
+    //     "on-click": "mpc --quiet toggle",
+    //     "on-click-right": "mpc update; mpc ls | mpc add",
+    //     "on-click-middle": "alacritty -e ncmpcpp",
+    //     "on-scroll-up": "mpc --quiet prev",
+    //     "on-scroll-down": "mpc --quiet next",
+    //     "smooth-scrolling-threshold": 5,
+    //     "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
+    // },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": " ",
+            "power-saver": ""
+        }
+    },
+
+    /* Normal style */
+    // "hyprland/workspaces": {
+    //     "all-outputs": true,
+    //     "format": "{icon}",
+    //     "format-icons": {
+    //         "1": "󰌽",
+    //         "2": "󰈹",
+    //         "3": "",
+    //         "4": "",
+    //         "5": ""
+    //     },
+    //     "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
+    //     "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
+    //     "persistent-workspaces": {
+	// 	  "*": 4},
+    //     "sort-by-number": true,
+    //     "active-only": false
+    // },
+
+    // "sway/workspaces": {
+    //     "all-outputs": true,
+    //     "format": "{icon}",
+    //     "disable-scroll": false,
+    //     "disable-click": false,
+    //     "persistent-workspaces": {
+    //     "1": [],
+    //     "2": [],
+    //     "3": [],
+    //     "4": []
+    //     },
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": "",
+    //         "high-priority-named": ["1", "2, 3"]
+    //     }
+    // },
+
+    "niri/workspaces": {
+        "all-outputs": false,
+        "disable-click": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "󰌽",
+            "2": "󰈹",
+            "3": "",
+            "4": "",
+            "5": ""
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": []
+        }
+    },
+
+    // "pulseaudio": {
+    //     "scroll-step": 3, // %, can be a float
+    //     "format": "{icon} {volume}% {format_source}",
+    //     "format-bluetooth": "{volume}% {icon} {format_source}",
+    //     "format-bluetooth-muted": " {icon} {format_source}",
+    //     "format-muted": " {format_source}",
+    //     //"format-source": "{volume}% ",
+    //     //"format-source-muted": "",
+    //     "format-source": "",
+    //     "format-source-muted": "",
+    //     "format-icons": {
+    //         "headphone": "",
+    //         "hands-free": "",
+    //         "headset": "",
+    //         "phone": "",
+    //         "portable": "",
+    //         "car": "",
+    //         "default": ["", "", ""]
+    //     },
+    //     "on-click": "pavucontrol",
+    //     "on-click-right": "amixer sset Master toggle"
+    // },
+
+    // "wireplumber": {
+    //     "on-click": "pavucontrol",
+    //     "on-click-right": "amixer sset Master toggle 1>/dev/null",
+    //     //on-click: "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+    //     //on-scroll-down: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04+";
+    //     //on-scroll-up: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04-";
+    //     // "format": "<span foreground='#b47109'>{icon}</span> {volume}%",
+    //     "format": "<span foreground='#32302f'>{icon}</span> {volume}%",
+    //     "format-muted": " ",
+    //     "format-source": "",
+    //     "format-source-muted": "",
+    //     //"format-muted": "<span foreground='#fab387'> </span>",
+    //     //"format-icons": [ "<span foreground='#fab387'></span>" ]
+    //     "format-icons": {
+    //         "headphone": " ",
+    //         "hands-free": " ",
+    //         "headset": " ",
+    //         "phone": " ",
+    //         "portable": " ",
+    //         "car": " ",
+    //         "default": [" ", " ", " "]
+    //     }
+    // }
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 5
+    }
+}
