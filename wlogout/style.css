@@ -1,3 +1,4 @@
+@import url("../../.cache/wal/colors-waybar.css");
 
 window {
     font-family: ProFont IIx Nerd Font Mono;
@@ -31,7 +32,7 @@ button:hover {
     /* background-color: #6f8352; */
 
     /* background-color: #689d6a; */
-    background-color: #C6695D;
+    background-color: @color1;
     color: transparent;
     transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682), box-shadow 0.5s ease-in;
 }

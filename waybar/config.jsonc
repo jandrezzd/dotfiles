@@ -15,9 +15,9 @@
     "spacing": 0, // Gaps between modules
 
     "modules-left": [
-        "hyprland/workspaces",
+        "niri/workspaces",
         "custom/icon",
-        "hyprland/window",
+        "niri/window",
         // "temperature",
         "custom/media"
     ],
@@ -77,10 +77,15 @@
     //     "on-click": "kitty -e htop"
     // },
 
-    "hyprland/window": {
-        "format": "{class}",
-        "separate-outputs": false,
-        "max-length": 50
+    //"hyprland/window": {
+    //    "format": "{class}",
+    //    "separate-outputs": false,
+    //    "max-length": 50
+    //},
+
+    "niri/window": {
+        "format":"{app_id}",
+        "separate-outputs": false
     },
 
     "custom/icon": {
@@ -104,7 +109,7 @@
         },
         "format": "{icon} {capacity}%",
         // "format-charging": " {capacity}%",
-        "format-charging": "󰢝  {capacity}%",
+        "format-charging": " 󰢝  {capacity}%",
         "format-plugged": " {capacity}%",
         "format-icons": [
             "󰁺",
@@ -258,23 +263,23 @@
     },
 
     /* Normal style */
-    "hyprland/workspaces": {
-        "all-outputs": true,
-        "format": "{icon}",
-        "format-icons": {
-            "1": "󰌽",
-            "2": "󰈹",
-            "3": "",
-            "4": "",
-            "5": ""
-        },
-        "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
-        "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
-        "persistent-workspaces": {
-		  "*": 4},
-        "sort-by-number": true,
-        "active-only": false
-    },
+    // "hyprland/workspaces": {
+    //     "all-outputs": true,
+    //     "format": "{icon}",
+    //     "format-icons": {
+    //         "1": "󰌽",
+    //         "2": "󰈹",
+    //         "3": "",
+    //         "4": "",
+    //         "5": ""
+    //     },
+    //     "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
+    //     "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
+    //     "persistent-workspaces": {
+	// 	  "*": 4},
+    //     "sort-by-number": true,
+    //     "active-only": false
+    // },
 
     // "sway/workspaces": {
     //     "all-outputs": true,
@@ -298,6 +303,25 @@
     //         "high-priority-named": ["1", "2, 3"]
     //     }
     // },
+
+    "niri/workspaces": {
+        "all-outputs": false,
+        "disable-click": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "󰌽",
+            "2": "󰈹",
+            "3": "",
+            "4": "",
+            "5": ""
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": []
+        }
+    },
 
     // "pulseaudio": {
     //     "scroll-step": 3, // %, can be a float
